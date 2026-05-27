@@ -1,76 +1,70 @@
 """
-Tests for the basic content of an index.html file of a web site with a particular set of content.
+Tests for the basic content of the index.html file of a personal web site.
 
-Selenium webdriver for Chrome (a.k.a. the file named chromedriver) must be installed in either:
-- in the same directory as chrome.exe on Windows (e.g. C:\Program Files\Google\Chrome\Application)
-- in a directory that is included in the PATH on Mac OS X (e.g. /usr/local/bin)
+Requires Selenium 4.6+ (uses Selenium Manager to auto-manage chromedriver)
+and a recent installation of Google Chrome.
 """
 
-import pytest
 import json
+import pytest
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+
+
+def _build_url(site_url, page=""):
+  base = site_url.rstrip("/")
+  if not page:
+    return base + "/"
+  return base + "/" + page.lstrip("/")
+
 
 class Tests:
 
   @pytest.fixture(scope="class")
   def settings(self):
-    settings = json.load(open('./settings.json', 'r'))
-    yield settings
+    with open('./settings.json', 'r') as f:
+      yield json.load(f)
 
   @pytest.fixture(scope="class")
   def driver(self, settings):
-    """
-    Pop open a web browser and make it available to the tests.
-    """
-    print(settings["site_url"])
-
-    # set up the fixture
-    driver = webdriver.Chrome()
-    driver.get(settings["site_url"]) # load the site from the settings file
-    # provide the fixture value
-    yield driver  
-    # now tear it down
-    driver.close()
+    options = Options()
+    options.add_argument("--window-size=1400,1000")
+    driver = webdriver.Chrome(options=options)
+    driver.get(_build_url(settings["site_url"]))
+    yield driver
+    driver.quit()
 
   def test_title(self, driver, settings):
-    """
-    Check the title tag for the correct text
-    """
+    """The page title must include the student's name."""
     assert settings["name"] in driver.title
 
   def test_h1(self, driver, settings):
-    """
-    Check the h1 tag for the correct text
-    """
-    elem = driver.find_element_by_tag_name("h1")
+    """There must be an h1 containing the student's name."""
+    elem = driver.find_element(By.TAG_NAME, "h1")
     assert settings["name"] in elem.text
 
-  def test_ol_exists(self, driver, settings):
-    """
-    Check that the order list items exists
-    """
-    elems = driver.find_elements_by_css_selector("ol li") # find the h1 tag
+  def test_ol_exists(self, driver):
+    """There must be an ordered list with at least 2 items."""
+    elems = driver.find_elements(By.CSS_SELECTOR, "ol li")
     assert len(elems) >= 2
 
-  def test_link_href_exists(self, driver):
-    """
-    Check url of links to all assignment pages.
-    """
-    target_urls = ['topic_of_interest.html']
-    for url in target_urls:
-      # check for hrefs with either single or double quotes
-      elem_option1 = driver.find_element_by_xpath('//a[@href="' + url + '"]')
-      elem_option2 = driver.find_element_by_xpath("//a[@href='" + url + "']")
-      assert elem_option1 or elem_option2 # check that it exists
-
+  def test_link_to_topic_page(self, driver):
+    """The home page must link to topic_of_interest.html."""
+    try:
+      elem = driver.find_element(
+        By.CSS_SELECTOR,
+        "a[href='topic_of_interest.html'], a[href$='/topic_of_interest.html']",
+      )
+    except NoSuchElementException:
+      elem = None
+    assert elem, "Missing link to 'topic_of_interest.html'."
 
   def test_link_text_exists(self, driver):
-    """
-    Check text of links to all assignment pages.
-    """
-    target_terms = ['JQuery']
-    elems = [x.text.strip().lower().replace('assignment', '') for x in driver.find_elements_by_css_selector("a")]
-    elems = ''.join(elems)
-    for term in target_terms:
-      assert term.lower() in elems
+    """At least one link must mention the JQuery assignment."""
+    elems_text = ''.join(
+      x.text.strip().lower().replace('assignment', '')
+      for x in driver.find_elements(By.CSS_SELECTOR, "a")
+    )
+    assert 'jquery' in elems_text, "No link text mentions 'JQuery'."

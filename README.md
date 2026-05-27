@@ -1,4 +1,4 @@
-# A Topic Of Interest To Me
+# Javascript with JQuery Exercise - A Topic Of Interest To Me
 
 Welcome! In this assignment, you will add Javascript code to a new page on your web site and use the JQuery framework to add interactive behaviors.
 
