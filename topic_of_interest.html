@@ -1,1 +1,111 @@
-<!-- place your HTML code here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topic of Interest &mdash; Chelsea Yang</title>
+
+  <!-- site-wide CSS from the previous (CSS) assignment -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- jQuery MUST load first, then main.js -->
+  <script src="js/jquery.min.js"></script>
+  <!-- Extra credit: Velocity.js third-party animation library (loaded after jQuery) -->
+  <script src="js/velocity.min.js"></script>
+  <script src="js/main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>UX &amp; Product Design</h1>
+    <p>A topic of interest of mine, brought to life with a little jQuery.</p>
+  </header>
+
+  <nav>
+    <p>
+      <a href="index.html">Home</a> |
+      <a href="about_me.html">About Me</a> |
+      <a href="more_about_me.html">More About Me</a>
+    </p>
+  </nav>
+
+  <main>
+    <p>
+      User experience and product design sit exactly where my background lives:
+      part art, part technology, part communication. Good design is invisible
+      &mdash; it removes friction so completely that people forget there was ever
+      a problem to solve. Below are a few interactive demos that double as the
+      required jQuery behaviors for this assignment.
+    </p>
+
+    <!-- ============ CONTENT CHANGE ============ -->
+    <div class="demo">
+      <h3>Design vocabulary</h3>
+      <p>Click the button to reveal the definition of one of my favorite UX terms.</p>
+      <button class="trigger" id="reveal-btn">Reveal definition</button>
+      <p id="definition">&hellip; click to learn a UX term.</p>
+    </div>
+
+    <!-- ============ IMAGE SWAP ============ -->
+    <div class="demo">
+      <h3>From wireframe to prototype</h3>
+      <p>
+        Hover over the image to watch a low-fidelity wireframe transform into a
+        high-fidelity prototype &mdash; the heart of the iterative design process.
+      </p>
+      <img
+        id="swap-image"
+        src="images/wireframe.svg"
+        data-original="images/wireframe.svg"
+        data-swap="images/prototype.svg"
+        alt="A UX design mockup that changes from a wireframe to a prototype on hover">
+    </div>
+
+    <!-- ============ ANIMATION ============ -->
+    <div class="demo">
+      <h3>Moving through the design pipeline</h3>
+      <p>
+        Click the button to send the chip sliding across the page &mdash; a
+        playful nod to how an idea moves from concept to ship.
+      </p>
+      <button class="trigger" id="move-btn">Ship it &rarr;</button>
+      <br>
+      <span id="mover">concept</span>
+    </div>
+
+    <!-- ============ EXTRA CREDIT: Velocity.js ============ -->
+    <div class="demo">
+      <h3>A little extra polish (Velocity.js)</h3>
+      <p>
+        Microinteractions are part of good UX too. Click below to trigger a
+        "shake" effect powered by the third-party
+        <a href="http://velocityjs.org/">Velocity.js</a> animation library &mdash;
+        the kind of feedback a form field might give on an invalid entry.
+      </p>
+      <button class="trigger" id="shake-btn">Give me feedback</button>
+      <br>
+      <span id="shake-target">Try again!</span>
+    </div>
+
+    <section id="my_interests">
+      <h2>The Design Process I Follow</h2>
+      <ol>
+        <li>Research &amp; discovery</li>
+        <li>Wireframing</li>
+        <li>Prototyping</li>
+        <li>Usability testing</li>
+        <li>Iteration &amp; handoff</li>
+      </ol>
+    </section>
+
+    <nav>
+      <p>
+        <a href="index.html">&larr; Back to home page</a>
+      </p>
+    </nav>
+  </main>
+
+  <footer>
+    <p>&copy; Chelsea Yang</p>
+  </footer>
+</body>
+</html>

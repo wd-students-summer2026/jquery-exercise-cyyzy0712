@@ -1,20 +1,20 @@
 {
-  "name": "Foo Barstein",
-  "nyu_net_id": "fb1258",
-  "site_url": "http://i6.cims.nyu.edu/~fb1258",
+  "name": "Chelsea Yang",
+  "nyu_net_id": "zy2727",
+  "site_url": "http://i6.cims.nyu.edu/~zy2727",
   "jquery_settings": {
     "content_change": {
-      "trigger_element_selector": "input#button1",
-      "trigger_event": "mouseover",
-      "target_element_selector": "p#paragraph1"
+      "trigger_element_selector": "button#reveal-btn",
+      "trigger_event": "click",
+      "target_element_selector": "p#definition"
     },
     "image_swap": {
-      "trigger_element_selector": "img#image1"
+      "trigger_element_selector": "img#swap-image"
     },
     "animation": {
-      "trigger_element_selector": "input#button2",
+      "trigger_element_selector": "button#move-btn",
       "trigger_event": "click",
-      "target_element_selector": "p#paragraph2"
+      "target_element_selector": "span#mover"
     }
   }
 }

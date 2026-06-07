@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320">
+  <rect width="480" height="320" fill="#f4f1ea"/>
+  <rect x="24" y="24" width="432" height="44" rx="6" fill="#d9d2c5"/>
+  <rect x="24" y="88" width="200" height="208" rx="6" fill="#e7e1d6" stroke="#c4bcab" stroke-width="2"/>
+  <rect x="244" y="88" width="212" height="96" rx="6" fill="#e7e1d6" stroke="#c4bcab" stroke-width="2"/>
+  <rect x="244" y="200" width="212" height="96" rx="6" fill="#e7e1d6" stroke="#c4bcab" stroke-width="2"/>
+  <line x1="44" y1="120" x2="180" y2="120" stroke="#b3a994" stroke-width="6" stroke-linecap="round"/>
+  <line x1="44" y1="148" x2="160" y2="148" stroke="#b3a994" stroke-width="6" stroke-linecap="round"/>
+  <line x1="44" y1="176" x2="180" y2="176" stroke="#b3a994" stroke-width="6" stroke-linecap="round"/>
+  <text x="240" y="312" font-family="Georgia, serif" font-size="14" fill="#7a715c" text-anchor="middle">Low-fidelity wireframe</text>
+</svg>
